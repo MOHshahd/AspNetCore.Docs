@@ -10,19 +10,19 @@ phases:
 
   pre_build:
     commands:
-      - echo Restore started on data
-      - echo Listing files in the current directory:
+      - echo "Restore started on $(date)"
+      - echo "Listing files in the current directory:"
       - ls -R  # عرض الملفات في الدليل بشكل متسلسل لمساعدتك في التحقق من المسارات
       - dotnet restore  # استعادة الحزم للمشروع الحالي
 
   build:
     commands:
-      - echo Build started on `date`
+      - echo "Build started on $(date)"
       - dotnet build --configuration Release  # بناء المشروع باستخدام وضع "Release"
 
   post_build:
     commands:
-      - echo Publish started on `date`
+      - echo "Publish started on $(date)"
       - dotnet publish -c Release -o ./publish  # نشر التطبيق إلى مجلد "publish"
 
 artifacts:
