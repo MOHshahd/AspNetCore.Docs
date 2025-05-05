@@ -5,27 +5,26 @@ phases:
     runtime-versions:
       dotnet: 6.0
     commands:
-      - echo Installing .NET 6.0...
-      - curl https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.sh | bash /dev/stdin --channel 6.0
+      - echo Using AWS-managed .NET 6.0 environment...
 
   pre_build:
     commands:
       - echo "Restore started on $(date)"
-      - echo "Listing files in the current directory:"
-      - ls -R  # عرض الملفات في الدليل بشكل متسلسل لمساعدتك في التحقق من المسارات
-      - dotnet restore  # استعادة الحزم للمشروع الحالي
+      - ls -R
+      - dotnet restore
 
   build:
     commands:
       - echo "Build started on $(date)"
-      - dotnet build --configuration Release  # بناء المشروع باستخدام وضع "Release"
+      - dotnet build --configuration Release
 
   post_build:
     commands:
       - echo "Publish started on $(date)"
-      - dotnet publish -c Release -o ./publish  # نشر التطبيق إلى مجلد "publish"
+      - dotnet publish -c Release -o ./publish
 
 artifacts:
   files:
     - '**/*'
-  base-directory: ./publish  # تحديد المسار حيث يتم وضع الملفات بعد النشر
+  base-directory: ./publish
+
