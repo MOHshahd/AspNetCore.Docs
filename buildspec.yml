@@ -10,21 +10,23 @@ phases:
   pre_build:
     commands:
       - echo "Restore started on $(date)"
+      - cd aspnetcore/tutorials/first-mvc-app/start
       - ls -R
       - dotnet restore
 
   build:
     commands:
       - echo "Build started on $(date)"
+      - cd aspnetcore/tutorials/first-mvc-app/start
       - dotnet build --configuration Release
 
   post_build:
     commands:
       - echo "Publish started on $(date)"
+      - cd aspnetcore/tutorials/first-mvc-app/start
       - dotnet publish -c Release -o ./publish
 
 artifacts:
   files:
     - '**/*'
-  base-directory: ./publish
-
+  base-directory: aspnetcore/tutorials/first-mvc-app/start/publish
