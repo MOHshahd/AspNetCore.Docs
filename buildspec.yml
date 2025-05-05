@@ -10,7 +10,7 @@ phases:
 
   pre_build:
     commands:
-      - echo Restore started on "date"
+      - echo Restore started on data
       - echo Listing files in the current directory:
       - ls -R  # عرض الملفات في الدليل بشكل متسلسل لمساعدتك في التحقق من المسارات
       - dotnet restore  # استعادة الحزم للمشروع الحالي
