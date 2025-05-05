@@ -9,9 +9,9 @@ phases:
 
   pre_build:
     commands:
-      - echo "Restore started on $(date)"
-      - ls -R  # طباعة كل الملفات والمجلدات الموجودة علشان نعرف إذا كان المسار المطلوب موجود فعلاً
-      - cd aspnetcore/tutorials/first-mvc-app/start
+      - echo "Listing files to locate the project..."
+      - ls -R  # دا هيطبع كل الملفات والمجلدات
+      - echo "Done listing. Now trying restore."
       - dotnet restore
 
   build:
