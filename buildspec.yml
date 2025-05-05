@@ -4,20 +4,28 @@ phases:
   install:
     runtime-versions:
       dotnet: 6.0
+    commands:
+      - echo Installing .NET 6.0...
+      - curl https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.sh | bash /dev/stdin --channel 6.0
+
   pre_build:
     commands:
       - echo Restore started on `date`
-      - dotnet restore src/MyApp/MyApp.csproj
+      - echo Listing files in current directory:
+      - ls -R  # عرض الملفات في الدليل بشكل متسلسل لمساعدتك في التحقق من المسارات
+      - dotnet restore  # استعادة الحزم للمشروع الحالي بغض النظر عن المسار
+
   build:
     commands:
       - echo Build started on `date`
-      - dotnet build src/MyApp/MyApp.csproj --configuration Release
+      - dotnet build --configuration Release  # بناء المشروع باستخدام وضع "Release"
+
   post_build:
     commands:
       - echo Publish started on `date`
-      - dotnet publish src/MyApp/MyApp.csproj -c Release -o ./publish
+      - dotnet publish -c Release -o ./publish  # نشر التطبيق إلى مجلد "publish"
 
 artifacts:
   files:
     - '**/*'
-  base-directory: ./publish
+  base-directory: ./publish  # تحديد المسار حيث يتم وضع الملفات بعد النشر
