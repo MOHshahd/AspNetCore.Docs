@@ -4,25 +4,20 @@ phases:
   install:
     runtime-versions:
       dotnet: 6.0
-
   pre_build:
     commands:
       - echo Restore started on `date`
-      - dotnet restore
-
+      - dotnet restore src/MyApp/MyApp.csproj
   build:
     commands:
       - echo Build started on `date`
-      - dotnet build --configuration Release
-
+      - dotnet build src/MyApp/MyApp.csproj --configuration Release
   post_build:
     commands:
       - echo Publish started on `date`
-      - dotnet publish -c Release -o ./publish
+      - dotnet publish src/MyApp/MyApp.csproj -c Release -o ./publish
 
 artifacts:
   files:
     - '**/*'
   base-directory: ./publish
-
-
